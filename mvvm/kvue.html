@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>mvvm</title>
+</head>
+<body>
+      <div id="app">
+          <!-- 插值 -->
+          <a k-click="add()">点击我</a>
+          <input  k-model="counter"/>
+          <p>{{counter}}</p>
+          <p>{{counter}}</p>
+          <p>{{counter}}</p>
+          <!-- 指令 -->
+          <p k-text="counter"></p>
+          <p k-html="desc"></p>
+        </div>
+  <script src="compile.js"></script>
+  <script src="kvue.js"></script>
+  <script>
+   const app=new KVue({
+     el:"#app",
+     data:{
+       counter:1,
+       desc:'<span style="color:red">hello world</span>'
+     }
+   })
+
+   setInterval(()=>{
+     app.counter++;
+   },1000)
+   function add(){
+     alert(1)
+   }
+  </script>
+</body>
+</html>
