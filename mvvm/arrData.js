@@ -1,3 +1,4 @@
+
 const patchArray = (function() {
   const methodsToPatch = [
       'push',
@@ -17,8 +18,10 @@ const patchArray = (function() {
           configurable: true
       });
   }
-  const arrayProto = Array.prototype, //缓存Array的原型
-  arrayMethods = Object.create(arrayProto); //继承Array的原型
+  //缓存Array的原型
+  const arrayProto = Array.prototype 
+  //   备份一份，修改备份
+  const arrayMethods = Object.create(arrayProto); //继承Array的原型
   methodsToPatch.forEach(function(method, index) {
           def(arrayMethods, method, function(...args) {
               //首先调用Array原型的方法

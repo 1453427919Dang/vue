@@ -9,7 +9,7 @@
 <body>
       <div id="app">
           <!-- 插值 -->
-          <a k-click="add()">点击我</a>
+          <a @click="add">点击我</a>
           <input  k-model="counter"/>
           <p>{{counter}}</p>
           <p>{{counter}}</p>
@@ -20,21 +20,24 @@
         </div>
   <script src="compile.js"></script>
   <script src="kvue.js"></script>
+  <!-- <script src="objData.js"></script> -->
   <script>
    const app=new KVue({
      el:"#app",
      data:{
        counter:1,
        desc:'<span style="color:red">hello world</span>'
+     },
+     methods:{
+      add(){
+        this.counter++
+      }
      }
    })
 
-   setInterval(()=>{
-     app.counter++;
-   },1000)
-   function add(){
-     alert(1)
-   }
+  //  setInterval(()=>{
+  //    app.counter++;
+  //  },1000)
   </script>
 </body>
 </html>

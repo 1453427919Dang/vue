@@ -64,6 +64,13 @@ compileElement(node){
       // }
       this[dir] && this[dir](node,exp)
     }
+
+    // 事件处理
+    if(this.isEvent(attrName)){
+      const dir = attrName.substring(1)
+      // 事件监听
+      this.eventHandler(node,exp,dir)
+    }
   })
  }
 
@@ -111,9 +118,25 @@ compileElement(node){
 
   model(node, exp) {
     this.update(node, exp, 'model')
+
+    // 事件监听
+    node.addEventListener('input',e=>{
+      this.$vm[exp] = e.target.value
+    })
   }
   modelUpdater(node,value){
     node.value = value
+  }
+
+  // @方法
+  isEvent(dir){
+    return dir.indexOf('@')==0
+  }
+
+  eventHandler(node,exp,dir){
+    debugger
+    const fn=this.$vm.$options.methods && this.$vm.$options.methods[exp]
+    node.addEventListener(dir,fn.bind(this.$vm))
   }
 }
 
